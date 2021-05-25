@@ -6,16 +6,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        systemNavigationBarColor: Colors.transparent,
-      )
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+    ),
   );
-
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-      .then((_) => runApp(
-      new MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: ChatPage()
-      )
-  ));
+  
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ChatPage(),
+    ),
+  );
 }
