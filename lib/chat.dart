@@ -86,7 +86,10 @@ class _ChatPageState extends State<ChatPage> {
         ),
         child: Text(
           messages[index],
-          style: TextStyle(color: Color.fromRGBO(0, 255, 0, 1.0), fontSize: 15.0),
+          style: TextStyle(
+            color: Color.fromRGBO(0, 255, 0, 1.0),
+            fontSize: 15.0,
+          ),
         ),
       ),
     );
@@ -116,7 +119,9 @@ class _ChatPageState extends State<ChatPage> {
       child: TextField(
         cursorWidth: 2.5,
         cursorColor: Color.fromRGBO(0, 255, 0, 1.0),
-        style: TextStyle(color: Color.fromRGBO(0, 255, 0, 1.0)),
+        style: TextStyle(
+          color: Color.fromRGBO(0, 255, 0, 1.0),
+        ),
         decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(top: 14.0),
@@ -140,7 +145,10 @@ class _ChatPageState extends State<ChatPage> {
       backgroundColor: Color.fromRGBO(51, 51, 51, 1.0),
       onPressed: () {
         if (textController.text.isNotEmpty) {
-          socketIO.sendMessage('send_message', json.encode({'message': textController.text}));
+          socketIO.sendMessage(
+            'send_message',
+            json.encode({'message': textController.text}),
+          );
           this.setState(() => messages.add(textController.text));
           textController.text = '';
           scrollController.animateTo(
@@ -177,18 +185,18 @@ class _ChatPageState extends State<ChatPage> {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Container(
-          color: Colors.black,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: height * 0.1),
-                buildMessageList(),
-                buildInputArea()
-              ],
-            ),
+      body: Container(
+        color: Colors.black,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: height * 0.1),
+              buildMessageList(),
+              buildInputArea(),
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }
